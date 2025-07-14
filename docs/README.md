@@ -3,7 +3,9 @@ Automatically applies to jobs on Instahyre.com.
 
 ## Features
 - Auto-clicks "Apply" buttons on Instahyre job listings
-- Runs every 3 seconds (configurable)
+
+## How To Use 
+- The extension will automatically detect and apply for all the jobs in that section.
 
 ## Installation
 1. Download this repo
