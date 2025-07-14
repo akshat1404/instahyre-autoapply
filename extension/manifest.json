@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Instahyre Auto-Apply",
+  "version": "1.0",
+  "description": "Automatically applies to jobs on Instahyre",
+  "content_scripts": [{
+    "matches": ["https://www.instahyre.com/candidate/*"],
+    "js": ["content-script.js"],
+    "run_at": "document_end"
+  }],
+  "icons": {
+    "128": "images/icon128.png"
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.instahyre.com/*"]
+}
