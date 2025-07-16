@@ -13,18 +13,34 @@ const observer = new MutationObserver((mutations) => {
     autoApply();
 });
 
+function startObserver(){
 
-let id=setInterval(() => {
+    let id=setInterval(() => {
+    
+        const elementToBeObserved=document.querySelector('.row.bar-actions.ng-scope');
+    
+        if(elementToBeObserved) {
+            observer.observe(elementToBeObserved, {
+                childList: true,
+                subtree: true
+            });
+            autoApply()
+            clearInterval(id);
+        }
+    
+    }, 5000); 
+}
 
-    const elementToBeObserved=document.querySelector('.row.bar-actions.ng-scope');
+function initialInterval(){
 
-    if(elementToBeObserved) {
-        observer.observe(elementToBeObserved, {
-            childList: true,
-            subtree: true
-        });
-        autoApply()
-        clearInterval(id);
-    }
+    let id=setInterval(() => {
+        const element=document.querySelector('#interested-btn');
+        if(element){
+            clearInterval(id);
+            element.click();
+            startObserver();
+        }
+    },1000); 
+}
 
-}, 5000); 
+initialInterval();
