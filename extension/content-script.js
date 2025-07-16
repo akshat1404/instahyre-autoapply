@@ -28,7 +28,7 @@ function startObserver(){
             clearInterval(id);
         }
     
-    }, 5000); 
+    }, 3000); 
 }
 
 function initialInterval(){
