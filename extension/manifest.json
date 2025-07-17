@@ -9,7 +9,7 @@
     "run_at": "document_end"
   }],
   "icons": {
-    "128": "images/icon128.png"
+    "128": "images/logo.png"
   },
   "permissions": ["storage"],
   "host_permissions": ["https://www.instahyre.com/*"]

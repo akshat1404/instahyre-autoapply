@@ -43,4 +43,12 @@ function initialInterval(){
     },1000); 
 }
 
-initialInterval();
+
+const documentObserver= new MutationObserver((mutations) => {    
+    initialInterval();
+});
+
+documentObserver.observe(document, {
+    childList: true,
+    subtree: true
+});
