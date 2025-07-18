@@ -1,10 +1,8 @@
-// State management
 let autoApplyEnabled = false;
 let observer = null;
 let initialIntervalId = null;
 let startObserverId = null;
 
-// Create and inject toggle UI
 function createToggleUI() {
   const toggleContainer = document.createElement('div');
   toggleContainer.className = 'instahyre-autoapply-toggle';
@@ -30,7 +28,6 @@ function createToggleUI() {
   
   document.body.appendChild(toggleContainer);
   
-  // Load saved state
   chrome.storage.sync.get(['autoApplyEnabled'], (result) => {
     autoApplyEnabled = result.autoApplyEnabled || false;
     toggleInput.checked = autoApplyEnabled;
@@ -40,7 +37,6 @@ function createToggleUI() {
     }
   });
   
-  // Toggle event listener
   toggleInput.addEventListener('change', () => {
     autoApplyEnabled = toggleInput.checked;
     chrome.storage.sync.set({ autoApplyEnabled });
@@ -53,7 +49,6 @@ function createToggleUI() {
   });
 }
 
-// Main auto-apply function
 function autoApply() { 
   const applyButton = document.querySelector('.btn.btn-lg.btn-primary.new-btn');
   
@@ -64,19 +59,15 @@ function autoApply() {
   }
 }
 
-// Start the auto-apply process
 function startAutoApply() {
   console.log('[Instahyre Auto-Apply] Starting automation');
   
-  // Clear any existing intervals/observers
   stopAutoApply();
   
-  // Create new observer
   observer = new MutationObserver(() => {
     if (autoApplyEnabled) autoApply();
   });
   
-  // Start observer initialization
   startObserverId = setInterval(() => {
     const elementToBeObserved = document.querySelector('.row.bar-actions.ng-scope');
     
@@ -91,7 +82,6 @@ function startAutoApply() {
     }
   }, 1000);
   
-  // Handle initial modal
   initialIntervalId = setInterval(() => {
     const element = document.querySelector('#interested-btn');
     if (element) {
@@ -102,7 +92,6 @@ function startAutoApply() {
   }, 500);
 }
 
-// Stop the auto-apply process
 function stopAutoApply() {
   console.log('[Instahyre Auto-Apply] Stopping automation');
   
@@ -122,7 +111,6 @@ function stopAutoApply() {
   }
 }
 
-// Listen for messages from popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'toggleAutoApply') {
     autoApplyEnabled = request.enabled;
@@ -135,7 +123,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-// Initialize the extension
 if (window.location.hostname.includes('instahyre.com')) {
   createToggleUI();
 }
