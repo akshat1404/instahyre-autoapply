@@ -1,18 +1,39 @@
-# Instahyre Auto-Apply Extension
-Automatically applies to jobs on Instahyre.com.
+# 🚀 Instahyre Auto-Apply Chrome Extension  
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/oheeblfkddiafhcpkegnidgaanfpjjod?label=Install&logo=google-chrome&style=for-the-badge)](https://chrome.google.com/webstore/detail/oheeblfkddiafhcpkegnidgaanfpjjod)  
+[![GitHub stars](https://img.shields.io/github/stars/akshat1404/instahyre-autoapply?style=social)](https://github.com/akshat1404/instahyre-autoapply)  
 
-## Features
-- Auto-clicks "Apply" buttons on Instahyre job listings
+Automatically applies to jobs on Instahyre.com with **one click**. Save hours of repetitive clicking!  
 
-## How To Use 
-- The extension will automatically detect and apply for all the jobs in that section.
+---
 
-## Installation
-1. Download this repo
-2. Open Chrome → `chrome://extensions`
-3. Enable **Developer mode**
-4. Click **Load unpacked** and select the `extension` folder
+## ✨ Features  
+✔ **Smart Detection** - Works on all Instahyre job listings  
+✔ **User Control** - Enable/disable anytime with the toggle  
+✔ **Privacy Focused** - No data collection or tracking  
+✔ **Lightweight** - No performance impact  
 
-## Warning
-- Use responsibly to avoid spamming applications
-- Not affiliated with Instahyre
+---
+
+## 🛠️ How It Works  
+1. **Open** any job section (Recommended/New/Featured)  
+2. **Toggle ON** the extension (top-right corner)  
+3. **Watch** as it auto-applies to all visible jobs  
+
+📌 *Tip: Works best with the "Recommended Jobs" section*
+
+---
+
+## 📥 Installation  
+### Chrome Web Store (Recommended)  
+1. [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID)  
+
+### Manual Setup (Developers)  
+```bash
+# Clone the repo
+git clone https://github.com/akshat1404/instahyre-autoapply.git
+
+# Load in Chrome:
+1. Go to chrome://extensions  
+2. Enable "Developer mode"  
+3. Click "Load unpacked"  
+4. Select the `extension` folder
