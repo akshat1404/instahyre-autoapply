@@ -69,12 +69,13 @@ function startAutoApply() {
   });
   
   startObserverId = setInterval(() => {
-    const elementToBeObserved = document.querySelector('.row.bar-actions.ng-scope');
+    const elementToBeObserved = document.querySelector('.company-name.ng-binding');
     
     if (elementToBeObserved) {
       observer.observe(elementToBeObserved, {
         childList: true,
-        subtree: true
+        subtree: true,
+        characterData: true
       });
       autoApply();
       clearInterval(startObserverId);
