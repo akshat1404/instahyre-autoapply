@@ -1,7 +1,7 @@
 let autoApplyEnabled = false;
 let observer = null;
 let initialIntervalId = null;
-let startObserverId = null;
+let applyIntervalId = null;
 
 function createToggleUI() {
   const toggleContainer = document.createElement('div');
@@ -50,12 +50,20 @@ function createToggleUI() {
 }
 
 function autoApply() { 
+  const modal = document.querySelector('.application-modal-block.ng-scope');
+  if (!modal) return;
+  
   const applyButton = document.querySelector('.btn.btn-lg.btn-primary.new-btn');
   
   if (applyButton) {
     const companyName = document.querySelector('.company-name.ng-binding')?.innerText || 'Unknown Company';
     console.log(`[Instahyre Auto-Apply] Applying to ${companyName}`);
     applyButton.click();
+    
+    if (applyIntervalId) {
+      clearInterval(applyIntervalId);
+      applyIntervalId = null;
+    }
   }
 }
 
@@ -64,24 +72,28 @@ function startAutoApply() {
   
   stopAutoApply();
   
-  observer = new MutationObserver(() => {
-    if (autoApplyEnabled) autoApply();
+  const targetNode = document.querySelector('.application-modal.candidate-apply-modal');
+  if (!targetNode) {
+    console.log('[Instahyre Auto-Apply] Modal container not found, retrying...');
+    setTimeout(startAutoApply, 1000);
+    return;
+  }
+  
+  observer = new MutationObserver((mutations) => {
+
+    if (!applyIntervalId && autoApplyEnabled) {
+      applyIntervalId = setInterval(autoApply, 500);
+    }
   });
   
-  startObserverId = setInterval(() => {
-    const elementToBeObserved = document.querySelector('.company-name.ng-binding');
-    
-    if (elementToBeObserved) {
-      observer.observe(elementToBeObserved, {
-        childList: true,
-        subtree: true,
-        characterData: true
-      });
-      autoApply();
-      clearInterval(startObserverId);
-      startObserverId = null;
-    }
-  }, 1000);
+  observer.observe(targetNode, {
+    childList: true,
+    subtree: true,
+    attributes: true
+  });
+  
+
+  applyIntervalId = setInterval(autoApply, 500);
   
   initialIntervalId = setInterval(() => {
     const element = document.querySelector('#interested-btn');
@@ -106,9 +118,9 @@ function stopAutoApply() {
     initialIntervalId = null;
   }
   
-  if (startObserverId) {
-    clearInterval(startObserverId);
-    startObserverId = null;
+  if (applyIntervalId) {
+    clearInterval(applyIntervalId);
+    applyIntervalId = null;
   }
 }
 
