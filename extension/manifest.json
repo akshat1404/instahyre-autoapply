@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Instahyre Auto-Apply",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Automatically applies to jobs on Instahyre with user control",
   "content_scripts": [{
     "matches": ["https://www.instahyre.com/*"],
